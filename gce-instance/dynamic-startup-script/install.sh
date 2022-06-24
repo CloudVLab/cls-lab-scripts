@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIRECTORY="tf"
+DIRECTORY="terraform"
 SCRIPT_DIRECTORY="scripts"
 FILE1="main.tf"
 FILE1_URL="https://github.com/CloudVLab/cls-lab-scripts/raw/main/gce-instance/dynamic-startup-script/terraform/main.tf"
@@ -18,12 +18,10 @@ if [ ! -d $DIRECTORY ]; then
   mkdir $DIRECTORY 
 fi
 
-
 # Create scripts directory if not present
 if [ ! -d $SCRIPT_DIRECTORY ]; then
   mkdir $SCRIPT_DIRECTORY 
 fi
-
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE1 ]; then

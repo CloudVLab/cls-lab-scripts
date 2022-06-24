@@ -43,10 +43,8 @@ The example is based on the following hierarchy:
 
 To start, run the following command in your lab folder to add the example Terraform code to your project:
 
-<!-- need to update -->
-
 ```
-curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/lab_proxy/example/install.sh | bash
+curl  -L https://github.com/CloudVLab/cls-lab-scripts/raw/main/gce-instance/dynamic-startup-script/install.sh | bash
 ```
 
 #### Create your dynamic variables
