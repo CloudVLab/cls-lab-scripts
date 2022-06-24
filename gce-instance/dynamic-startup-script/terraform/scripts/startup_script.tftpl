@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Set environment variables
+PROJECT_ID=$(gcloud config get-value project)
+
+# Insert Terraform variables into startup script
+export user_1_username=${user_1_username}
+export user_2_username=${user_2_username}
+export zone=${random_zone}
+
+# Remove viewer roles from user_1 and user_2
+gcloud projects remove-iam-policy-binding "$PROJECT_ID" --member="user:$user_1_username" --role='roles/viewer'
+gcloud projects remove-iam-policy-binding "$PROJECT_ID" --member="user:$user_2_username" --role='roles/viewer'
+
+# Delete the instance
+gcloud compute instances delete startup-vm --zone="$zone"

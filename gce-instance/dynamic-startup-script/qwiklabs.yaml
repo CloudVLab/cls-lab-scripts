@@ -1,0 +1,107 @@
+---
+entity_type: Lab
+schema_version: 2
+default_locale: en
+
+title:
+  locales:
+    en: 'Dynamic Terraform Startup Scripts on Compute Instances'
+
+description:
+  locales:
+    en: "Demo description"
+
+duration: 90
+max_duration: 90
+level: intermediate
+tags: [Qwiklabs]
+
+instruction:
+  type: md
+  uri:
+    locales:
+      en: instructions/en.md
+
+environment:
+  resources:
+
+    - type: gcp_project
+      id: project_0
+      variant: gcpd
+      ssh_key_user: user_0
+      startup_script:
+        type: qwiklabs
+        path: terraform
+        custom_properties:
+        - key: user_1_userName
+          reference: user_1.local_username
+        - key: user_2_userName
+          reference: user_2.local_username
+
+    - type: gcp_project
+      id: project_1
+      variant: gcpd
+      ssh_key_user: user_1
+
+    - type: gcp_project
+      id: project_2
+      variant: gcpd
+      ssh_key_user: user_2
+
+    - type: gcp_user
+      id: user_0
+      permissions:
+        - project: project_0
+          roles:
+            - roles/owner
+
+    - type: gcp_user
+      id: user_1
+      permissions:
+        - project: project_0
+          roles:
+            - roles/browser
+        - project: project_1
+          roles:
+            - roles/owner
+
+    - type: gcp_user
+      id: user_2
+      permissions:
+        - project: project_0
+          roles:
+            - roles/browser
+        - project: project_2
+          roles:
+            - roles/owner
+
+  student_visible_outputs:
+    - label:
+        locales:
+          en: "Open Project Console"
+      reference: project_0.console_url
+
+    - label:
+        locales:
+          en: "User 0 Username"
+      reference: user_0.username
+    - label:
+        locales:
+          en: "User 0 Password"
+      reference: user_0.password
+    - label:
+        locales:
+          en: "User 1 Username"
+      reference: user_1.username
+    - label:
+        locales:
+          en: "User 1 Password"
+      reference: user_1.password
+    - label:
+        locales:
+          en: "User 2 Username"
+      reference: user_2.username
+    - label:
+        locales:
+          en: "User 2 Password"
+      reference: user_2.password
